@@ -1,0 +1,21 @@
+{
+  "name": "chatbotai",
+  "version": "1.0.0",
+  "description": "A ChatGPT Powered Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Farish Jamal",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "openai": "^4.26.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
