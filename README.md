@@ -48,7 +48,7 @@ The Chatbot is an intelligent conversational agent designed to engage in natural
   - Express
   - MongoDB
   - EJS
-  - Nodemon
+  - Open AI API
 
 
 
