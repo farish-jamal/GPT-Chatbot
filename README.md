@@ -35,8 +35,8 @@ The Chatbot is an intelligent conversational agent designed to engage in natural
 ## Environment Variables
   Create a .env file in the root of your project and add the following:
 
-  OPEN_AI_KEY=your_openai_api_key
-  MONGODB_URI=your_mongodb_connection_uri
+  - OPEN_AI_KEY=your_openai_api_key
+  - MONGODB_URI=your_mongodb_connection_uri
 
 # Development
   For local development, use Nodemon to automatically restart the server when changes are made.
@@ -44,11 +44,11 @@ The Chatbot is an intelligent conversational agent designed to engage in natural
   npm run start
 
 # Built With
-  Node.js
-  Express
-  MongoDB
-  EJS
-  Nodemon
+  - Node.js
+  - Express
+  - MongoDB
+  - EJS
+  - Nodemon
 
 
 
