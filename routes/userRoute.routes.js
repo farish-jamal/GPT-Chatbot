@@ -4,7 +4,7 @@ const route = express.Router();
 
 route.post("/register", handleCreateUSer);
 route.get("/register", (req, res)=>{
- res.render("signup");
+ res.render("register");
 });
 route.post("/login", handleGetUser);
 
