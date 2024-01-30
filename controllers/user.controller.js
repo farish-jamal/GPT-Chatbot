@@ -10,6 +10,13 @@ async function handleCreateUSer(req, res){
  return res.send(user._id);
 }
 
+async function handleGetUser(req, res){
+ const {email, password} = req.body;
+ const user = await User.findOne({email, password});
+ return res.json(user);
+}
+
 module.exports = {
- handleCreateUSer
+ handleCreateUSer,
+ handleGetUser
 };
