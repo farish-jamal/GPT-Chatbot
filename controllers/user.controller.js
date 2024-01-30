@@ -16,7 +16,10 @@ async function handleCreateUSer(req, res){
 
 async function handleGetUser(req, res){
  const {email, password} = req.body;
- const user = await User.findOne({email, password});
+ const user = await User.findOne({email});
+ if(!user) return res.redirect("/user/login");
+ const comparePassword = bycrypt.compare(password, user.password);
+ if(!comparePassword) return res.redirect("/user/login");
  return res.json(user);
 }
 
