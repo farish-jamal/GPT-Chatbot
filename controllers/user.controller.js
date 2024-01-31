@@ -6,11 +6,18 @@ async function handleCreateUSer(req, res){
  const salt = await bycrypt.genSalt(10);
  const securePassword = await bycrypt.hash(req.body.password, salt);
  const body = req.body;
- const user = await User.create({
-  userName: body.userName,
-  email: body.email,
-  password: securePassword
- })
+ try {
+  const user = await User.create({
+   userName: body.userName,
+   email: body.email,
+   password: securePassword
+  });
+ } catch (error) {
+  // console.log(error);
+  return res.render("register", {
+   alert: true
+  });
+ }
  return res.send(user._id);
 }
 
