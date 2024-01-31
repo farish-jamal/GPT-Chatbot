@@ -9,6 +9,18 @@ route.get("/", (req, res) => {
   });
 });
 
+route.get("/user/register", (req, res)=>{
+ res.render("register", {
+  alert: false,
+ });
+});
+
+route.get("/user/login", (req, res)=>{
+ res.render("login", {
+  alert: false
+ });
+});
+
 route.get("/api/response", (req, res) => {
   res.redirect("/");
 });

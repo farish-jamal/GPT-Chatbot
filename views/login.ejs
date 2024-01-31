@@ -10,17 +10,28 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <style>
       form{
-        background: #b1b1b1;
-        padding: 40px 30px;
+        background: #cfcfcf;
+        padding: 50px 30px;
         border-radius: 15px;
+        font-family: "Open Sans", sans-serif;
       }
     </style>
   </head>
-  <body>
+  <body>   
+   <% if(alert) { %>
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="border-radius: 0px !important;">
+      <%= message %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+  <% } %> 
     <div class="d-flex justify-content-center align-items-center flex-column login-modal" style="height: 100vh;">
-      <h3 class="my-3">Login</h3>
+      <h4 class="my-3" style="font-family: 'Open Sans', 'sans-serif'";>Login to get started!</h4>
       <form method="post" action="/user/login">
         <div class="mb-3">
           <input type="email" class="form-control" placeholder="name@example.com" name="email">
@@ -28,7 +39,9 @@
         <div class="mb-3">
           <input type="password" class="form-control" placeholder="12345678" name="password">
         </div>
-        <button type="submit" class="btn btn-success" style="width: 100%;">Login</button>
+        <button type="submit" class="btn btn-success mb-4" style="width: 100%;">Login</button>
+        <p class="small text-center">Not a user? Click on go to register</p>
+        <a class="btn btn-primary" style="width: 100%;" href="/user/register">Go To Register</a>
       </form>
     </div>
     <script

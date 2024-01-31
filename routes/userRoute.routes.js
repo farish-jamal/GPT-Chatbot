@@ -3,16 +3,6 @@ const {handleCreateUSer, handleGetUser} = require("../controllers/user.controlle
 
 const route = express.Router();
 
-route.get("/register", (req, res)=>{
- res.render("register", {
-  alert: false,
- });
-});
-
-route.get("/login", (req, res)=>{
- res.render("login");
-});
-
 route.post("/register", handleCreateUSer);
 
 route.post("/login", handleGetUser);

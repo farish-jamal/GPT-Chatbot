@@ -10,34 +10,49 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <style>
+      #userPrompt{
+        background-color: rgb(82, 82, 253);
+        padding: 10px;
+        color: white;
+        border-radius: 10px;
+      }
+      #botResponse{
+        background-color: #8d8d8d;
+        padding: 10px;
+        color: white;
+        border-radius: 10px;
+      }
+    </style>
   </head>
   <body>
-    <h1 class="my-4 text-center">Ask Chat Bot A Question</h1>
-    <div class="container">
-      <form action="/api/response" method="post">
+    <h2 class="my-5 text-center">Hi, Farish! How can I help you today? 👾🚀</h2>
+    <div class="container d-flex align-items-center justify-content-center" style="width: 700px;">
+      <form action="/api/response" method="post" >
         <div class="mb-3">
           <textarea
-            class="form-control"
-            rows="4"
-            cols="10"
+            class="form-control p-3"
+            cols="60"
+            rows="5"
             name="prompt"
             placeholder="Ask Your Question"
+            style="background-color: #ececec;"
           ></textarea>
         </div>
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-primary" style="width: 100%;">Generate Response 🛠⚙️</button>
+      <a class="btn btn-primary text-center mt-4" href="/api/history"
+      >Your Previous Searches 🪄</a
+    >
       </form>
     </div>
-    <div class="container my-5">
+    <div class="container my-5 d-flex flex-column" style="width: 670px;">
       <% if (response && prompt) { %>
-      <h3 class="text-center">Chat Bot Response:</h3>
-      <p><b>You:</b> <%= prompt %></p>
-      <p><b>ChatGPT:</b> <%= response %></p>
+      <h3 class="text-center">Chat Bot Response 💡</h3>
+      <p id="userPrompt"><b>Farish:</b> <%= prompt %></p>
+      <p id="botResponse"><b>Bot:</b> <%= response %></p>
       <% } else { %>
-      <p>No valid response or prompt provided.</p>
+      <h5 class="text-center">No valid response or prompt provided 🤡</h5>
       <% } %>
-      <a class="btn btn-success text-center mt-4" href="/api/history"
-        >Previous Searches</a
-      >
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
