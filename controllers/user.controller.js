@@ -1,5 +1,6 @@
 const bycrypt = require("bcrypt");
 const User = require("../models/user.model");
+const {setUser} = require("../utils/auth.utils");
 
 async function handleCreateUSer(req, res) {
   const salt = await bycrypt.genSalt(10);
@@ -28,7 +29,13 @@ async function handleCreateUSer(req, res) {
         email: body.email,
         password: securePassword,
       });
-      return res.send(user._id);
+      const sessionId = setUser(user);
+      res.cookie("uid", sessionId);
+      return res.render("home", {
+        response: null,
+        prompt: null,
+        userName: user.userName
+      });
     } catch (error) {
       return res.render("register", {
         alert: true,
@@ -62,9 +69,12 @@ async function handleGetUser(req, res) {
    message: "Password Not Correct, Please Login With Correct Credentials",
    alert: true
   });
+  const sessionId = setUser(user);
+  res.cookie("uid", sessionId);
   return res.render("home", {
    response: null,
-   prompt: null
+   prompt: null,
+   userName: user.userName
   });
  }
 }
