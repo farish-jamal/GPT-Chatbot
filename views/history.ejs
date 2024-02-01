@@ -29,11 +29,12 @@
     }
   </style>
   <body>
+    <h1 class="my-4 text-center">All of your history is saved here 📷📢</h1>
     <div
-      class="container d-flex align-items-center justify-content-center flex-column"
+      class="container d-flex align-items-center justify-content-center"
     >
-      <h1 class="my-4 text-center">All of your history is saved here 📷📢</h1>
-      <a class="btn btn-primary text-center mb-4" href="/">Go back to chatbot 📌🚀</a>
+      <a class="btn btn-primary text-center mb-4 mx-2" href="/">Go back to chatbot 📌🚀</a>
+      <a class="btn btn-danger text-center mb-4 mx-2" href="/api/clear">Delete History ✅</a>
     </div>
     <div class="container">
       <% results.forEach(result=> { %>
