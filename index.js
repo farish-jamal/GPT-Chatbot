@@ -27,7 +27,7 @@ handleDatabaseConnection(process.env.MONGODB_API_KEY).then(()=>{
 
 app.use("/api", restrictToLoginUser, responseRoute);
 app.use("/user", userRoute);
-app.use("/", staticRoute);
+app.use("/", restrictToLoginUser, staticRoute);
 
 app.listen(PORT, ()=>{
  console.log("Server started");
