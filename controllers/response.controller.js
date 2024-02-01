@@ -29,7 +29,7 @@ async function handleOpenAiResponse(req, res) {
 }
 
 async function handleGetHistory(req, res) {
-  const results = await Response.find({});
+  const results = await Response.find({createdBy: req.user.id});
   return res.render("history", {
     results: results,
     firstName: req.user.firstName,
