@@ -14,4 +14,9 @@ route.get("/api/response", (req, res) => {
   res.redirect("/");
 });
 
+route.get("/logout", (req, res)=>{
+  res.clearCookie("uid");
+  return res.redirect("/user/login");
+})
+
 module.exports = route;

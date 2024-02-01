@@ -12,7 +12,6 @@ async function handleCreateUSer(req, res) {
         email: body.email,
         password: securePassword,
       });
-      console.log(user);
       const sessionId = setUser(user);
       res.cookie("uid", sessionId);
       return res.render("home", {
