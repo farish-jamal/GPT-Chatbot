@@ -19,19 +19,20 @@ async function handleOpenAiResponse(req, res) {
   await Response.create({
     userQuery: prompt,
     botResponse: response,
+    createdBy: req.user.id,
   });
   return res.render("home", {
-    userName: req.user.userName,
+    firstName: req.user.firstName,
     response: response,
     prompt: prompt,
   });
 }
 
 async function handleGetHistory(req, res) {
-  const results = await Response.find({});
+  const results = await Response.find({createdBy: req.user.id});
   return res.render("history", {
     results: results,
-    userName: req.user.userName,
+    firstName: req.user.firstName,
   });
 }
 

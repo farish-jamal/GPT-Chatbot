@@ -6,6 +6,10 @@ const responseSchema = mongoose.Schema({
  },
  botResponse:{
   type: String
+ },
+ createdBy: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User"
  }
 }, {timestamps: true});
 
