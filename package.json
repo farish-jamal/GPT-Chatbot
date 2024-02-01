@@ -4,7 +4,7 @@
   "description": "A ChatGPT Powered Chatbot",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Farish Jamal",
   "license": "ISC",
