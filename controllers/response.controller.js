@@ -21,6 +21,7 @@ async function handleOpenAiResponse(req, res) {
     botResponse: response,
   });
   return res.render("home", {
+    userName: req.user.userName,
     response: response,
     prompt: prompt,
   });
@@ -30,6 +31,7 @@ async function handleGetHistory(req, res) {
   const results = await Response.find({});
   return res.render("history", {
     results: results,
+    userName: req.user.userName,
   });
 }
 

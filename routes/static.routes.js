@@ -4,21 +4,10 @@ const route = express.Router();
 
 route.get("/", (req, res) => {
   res.render("home", {
+    userName: req.user.userName,
     response: null,
     prompt: null,
   });
-});
-
-route.get("/user/register", (req, res)=>{
- res.render("register", {
-  alert: false,
- });
-});
-
-route.get("/user/login", (req, res)=>{
- res.render("login", {
-  alert: false
- });
 });
 
 route.get("/api/response", (req, res) => {
