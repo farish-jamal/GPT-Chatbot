@@ -11,7 +11,6 @@ route.get("/register", (req, res)=>{
  });
 });
 
-
 route.post("/login", handleGetUser);
 
 route.get("/login", (req, res)=>{

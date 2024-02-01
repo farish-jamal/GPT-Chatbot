@@ -22,7 +22,7 @@ async function handleCreateUSer(req, res) {
     } catch (error) {
       return res.render("register", {
         alert: true,
-        message: error,
+        message: "Email already exists! Please use another email to register.",
       });
     }
 }
@@ -31,12 +31,12 @@ async function handleGetUser(req, res) {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.render("login", {
-   message: "Email Not Correct, Please Login With Correct Credentials",
+   message: "Email Not Correct, Please Login With Correct Credentials 📬",
    alert: true
   });
   const comparePassword = await bycrypt.compare(password, user.password);
   if (!comparePassword) return res.render("login", {
-   message: "Password Not Correct, Please Login With Correct Credentials",
+   message: "Password Not Correct, Please Login With Correct Credentials 🔑",
    alert: true
   });
   const sessionId = setUser(user);
