@@ -7,10 +7,10 @@ async function handleCreateUSer(req, res) {
   const securePassword = await bycrypt.hash(req.body.password, salt);
   const body = req.body;
 
-  if (body.userName === "") {
+  if (body.firstName === "") {
     return res.render("register", {
       alert: true,
-      message: "Username cannot be empty.",
+      message: "First Name cannot be empty.",
     });
   } else if (body.email === "") {
     return res.render("register", {
@@ -25,7 +25,7 @@ async function handleCreateUSer(req, res) {
   } else {
     try {
       const user = await User.create({
-        userName: body.userName,
+        firstName: body.firstName,
         email: body.email,
         password: securePassword,
       });
@@ -34,7 +34,7 @@ async function handleCreateUSer(req, res) {
       return res.render("home", {
         response: null,
         prompt: null,
-        userName: user.userName
+        firstName: user.firstName
       });
     } catch (error) {
       return res.render("register", {
@@ -74,7 +74,7 @@ async function handleGetUser(req, res) {
   return res.render("home", {
    response: null,
    prompt: null,
-   userName: user.userName
+   firstName: user.firstName
   });
  }
 }

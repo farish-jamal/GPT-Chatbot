@@ -4,7 +4,7 @@ const route = express.Router();
 
 route.get("/", (req, res) => {
   res.render("home", {
-    userName: req.user.userName,
+    firstName: req.user.firstName,
     response: null,
     prompt: null,
   });
