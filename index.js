@@ -2,12 +2,12 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-const responseRoute = require("../routes/response.routes");
-const staticRoute = require("../routes/static.routes");
-const userRoute = require("../routes/userRoute.routes");
-const {restrictToLoginUser, restrictLoggedInUserToAuthenticateAgain} = require("../middleware/auth.middleware");
+const responseRoute = require("./routes/response.routes");
+const staticRoute = require("./routes/static.routes");
+const userRoute = require("./routes/userRoute.routes");
+const {restrictToLoginUser, restrictLoggedInUserToAuthenticateAgain} = require("./middleware/auth.middleware");
 
-const {handleDatabaseConnection} = require("../databse/db.conndction");
+const {handleDatabaseConnection} = require("./databse/db.conndction");
 
 require('dotenv').config();
 
