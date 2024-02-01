@@ -39,11 +39,11 @@
       <% results.forEach(result=> { %>
       <p id="time"><%= result.createdAt %></p>
       <p id="userPrompt">
-        <b>Farish:</b>
+        <b><%= userName %>:</b>
         <%= result.userQuery %>
       </p>
       <p class="mb-5" id="botResponse">
-        <b>ChatGPT:</b>
+        <b>Chatbot:</b>
         <%= result.botResponse %>
       </p>
       <% }); %>
