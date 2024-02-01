@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const responseRoute = require("./routes/response.routes");
 const staticRoute = require("./routes/static.routes");
 const userRoute = require("./routes/userRoute.routes");
-const {restrictToLoginUser} = require("./middleware/auth.middleware");
+const {restrictToLoginUser, restrictLoggedInUserToAuthenticateAgain} = require("./middleware/auth.middleware");
 
 const {handleDatabaseConnection} = require("./databse/db.conndction");
 
@@ -26,7 +26,7 @@ handleDatabaseConnection(process.env.MONGODB_API_KEY).then(()=>{
 })
 
 app.use("/api", restrictToLoginUser, responseRoute);
-app.use("/user", userRoute);
+app.use("/user", restrictLoggedInUserToAuthenticateAgain, userRoute);
 app.use("/", restrictToLoginUser, staticRoute);
 
 app.listen(PORT, ()=>{
