@@ -1,6 +1,6 @@
 const { getUser } = require("../utils/auth.utils");
 
-async function restrictToLoginUser(req, res, next) {
+function restrictToLoginUser(req, res, next) {
   const userUid = req.cookies?.uid;
   if (!userUid) {
     return res.redirect("/user/login");
@@ -13,13 +13,22 @@ async function restrictToLoginUser(req, res, next) {
   next();
 }
 
-async function restrictLoggedInUserToAuthenticateAgain(req, res, next){
+function restrictLoggedInUserToAuthenticateAgain(req, res, next){
  const userUid = req.cookies?.uid;
  if(userUid) return res.redirect("/");
  next();
 }
 
+function restrictTo(role){
+  return (req, res, next)=>{
+    const userRole = req.user.role;
+    if(userRole !== role) return res.redirect("/");
+    next();
+  }
+}
+
 module.exports = {
   restrictToLoginUser,
-  restrictLoggedInUserToAuthenticateAgain
+  restrictLoggedInUserToAuthenticateAgain,
+  restrictTo
 };

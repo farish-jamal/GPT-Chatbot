@@ -6,7 +6,8 @@ function setUser(user){
  return jwt.sign({
   id: user._id,
   email: user.email,
-  firstName: user.firstName
+  firstName: user.firstName,
+  role: user.role
  }, secretID);
 }
 

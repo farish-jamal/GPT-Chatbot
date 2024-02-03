@@ -1,5 +1,5 @@
 const express = require("express");
-
+const {restrictTo} = require("../middleware/auth.middleware.js");
 const route = express.Router();
 
 route.get("/", (req, res) => {
@@ -17,6 +17,10 @@ route.get("/api/response", (req, res) => {
 route.get("/logout", (req, res)=>{
   res.clearCookie("uid");
   return res.redirect("/user/login");
+})
+
+route.get("/admin", restrictTo("ADMIN"),(req, res)=>{
+  return res.send("user");
 })
 
 module.exports = route;
