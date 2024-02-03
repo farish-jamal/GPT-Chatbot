@@ -24,8 +24,18 @@ async function handleDeleteUser(req, res){
   return res.redirect("/admin");
 }
 
+async function handleUpdateUser(req, res){
+  const {editId, editFirstName, editRole} = req.body;
+  await User.findByIdAndUpdate(editId, {
+    firstName: editFirstName,
+    role: editRole
+  });
+  return res.redirect("/admin");
+}
+
 module.exports = {
  handleAdminGetAllHistory,
  handleGetSpecificUserForAdmin,
- handleDeleteUser
+ handleDeleteUser,
+ handleUpdateUser
 };

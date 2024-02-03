@@ -35,6 +35,28 @@
     }
   </style>
   <body>
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/admin/update" method="post">
+              <input class="form-control mb-3" type="text" hidden name="editId" id="editId">
+              <input class="form-control mb-3" type="text" disabled name="editEmail" id="editEmail">
+              <input class="form-control mb-3" type="text" name="editFirstName" id="editName">
+              <select class="form-select mb-3" name="editRole" id="editRole">
+                <option value="NORMAL">NORMAL</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Save changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <h1 class="my-4 text-center">Hey Admin! Check All User Detail Here 📷📢</h1>
     <div
       class="container d-flex align-items-center justify-content-center"
@@ -75,12 +97,20 @@
           <td><%= result.firstName %></td>
           <td><%= result.email %></td>
           <td><%= result.role %></td>
-          <td class="buttons">✒️</td>
+          <td class="buttons" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateModal('<%= result._id %>','<%= result.firstName %>', '<%= result.email %>', '<%= result.role %>')">✒️</td>
           <td class="buttons"><a href=admin/delete/<%=result._id %>>❌</a></td>
          </tr>
         <% }); %>
        </tbody>
     </div>
+    <script>
+      function updateModal(userId, firstName, email, role){
+        document.getElementById("editId").value = userId;
+        document.getElementById("editEmail").value = email;
+        document.getElementById("editName").value = firstName;
+        document.getElementById("editRole").value = role;
+      }
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
