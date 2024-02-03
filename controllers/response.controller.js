@@ -33,6 +33,7 @@ async function handleGetHistory(req, res) {
   return res.render("history", {
     results: results,
     firstName: req.user.firstName,
+    role: req.user.role
   });
 }
 

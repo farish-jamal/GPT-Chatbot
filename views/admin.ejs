@@ -27,6 +27,12 @@
     #time{
       font-size: 12px;
     }
+    .buttons{
+     cursor: pointer;
+    }
+    .buttons > a {
+     text-decoration: none;
+    }
   </style>
   <body>
     <h1 class="my-4 text-center">Hey Admin! Check All User Detail Here 📷📢</h1>
@@ -34,6 +40,8 @@
       class="container d-flex align-items-center justify-content-center"
     >
       <a class="btn btn-primary text-center mb-4 mx-2" href="/">Go back to chatbot 📌🚀</a>
+      <a class="btn btn-warning text-center mb-4 mx-2" href="/api/history">Go back to history🚀</a>
+      
     </div>
     
     </div>
@@ -47,6 +55,31 @@
      </select>
      <button type="submit" class="btn btn-success ms-3">Submit</button>
      </form>
+     <h4 class="text-center my-4">All users are listed below</h4>
+     <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sno</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% let i = 0; %>
+        <% results.forEach(result=> { %>
+         <tr>
+          <th scope="row"><%= i = i + 1 %></th>
+          <td><%= result.firstName %></td>
+          <td><%= result.email %></td>
+          <td><%= result.role %></td>
+          <td class="buttons">✒️</td>
+          <td class="buttons"><a href=admin/delete/<%=result._id %>>❌</a></td>
+         </tr>
+        <% }); %>
+       </tbody>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

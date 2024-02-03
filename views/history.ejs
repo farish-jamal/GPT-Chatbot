@@ -35,6 +35,9 @@
     >
       <a class="btn btn-primary text-center mb-4 mx-2" href="/">Go back to chatbot 📌🚀</a>
       <a class="btn btn-danger text-center mb-4 mx-2" href="/api/clear">Delete History ✅</a>
+      <% if(role === "ADMIN"){%>
+        <a class="btn btn-warning text-center mb-4 mx-2" href="/admin">Go To Admin 🤡</a>
+      <% } %>
     </div>
     <div class="container">
       <% results.forEach(result=> { %>
