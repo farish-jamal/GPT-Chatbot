@@ -19,7 +19,13 @@ async function handleGetSpecificUserForAdmin(req, res){
  })
 }
 
+async function handleDeleteUser(req, res){
+  await User.findByIdAndDelete(req.params.id);
+  return res.redirect("/admin");
+}
+
 module.exports = {
  handleAdminGetAllHistory,
- handleGetSpecificUserForAdmin
+ handleGetSpecificUserForAdmin,
+ handleDeleteUser
 };
