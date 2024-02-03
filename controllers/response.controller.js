@@ -39,7 +39,11 @@ async function handleGetHistory(req, res) {
 
 async function handleClearHistory(req, res){
   await Response.deleteMany({createdBy: req.user.id});
-  return res.redirect("/api/history");
+  return res.render("history", {
+    results: null,
+    firstName: req.user.firstName,
+    role: req.user.role
+  });
 }
 
 module.exports = {
