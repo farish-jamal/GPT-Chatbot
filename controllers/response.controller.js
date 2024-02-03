@@ -44,5 +44,5 @@ async function handleClearHistory(req, res){
 module.exports = {
   handleOpenAiResponse,
   handleGetHistory,
-  handleClearHistory
+  handleClearHistory,
 };
