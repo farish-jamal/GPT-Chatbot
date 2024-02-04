@@ -27,7 +27,7 @@ handleDatabaseConnection(process.env.MONGODB_API_KEY).then(()=>{
 })
 
 app.use("/api", restrictToLoginUser, responseRoute);
-app.use("/user", restrictLoggedInUserToAuthenticateAgain, userRoute);
+app.use("/user", userRoute);
 app.use("/", restrictToLoginUser, staticRoute);
 app.use("/admin", adminRoute);
 

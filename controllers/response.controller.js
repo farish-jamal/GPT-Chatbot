@@ -29,20 +29,28 @@ async function handleOpenAiResponse(req, res) {
 }
 
 async function handleGetHistory(req, res) {
-  const results = await Response.find({createdBy: req.user.id});
-  return res.render("history", {
+  const results = await Response.find({createdBy: req.user.id}).sort({ createdAt: -1 });;
+  return res.render("userprofile", {
     results: results,
     firstName: req.user.firstName,
-    role: req.user.role
+    role: req.user.role,
+    email: req.user.email,
+    updatedAt: req.user.updatedAt,
+    createdAt: req.user.createdAt,
+    id: req.user.id
   });
 }
 
 async function handleClearHistory(req, res){
   await Response.deleteMany({createdBy: req.user.id});
-  return res.render("history", {
+  return res.render("userprofile", {
     results: null,
     firstName: req.user.firstName,
-    role: req.user.role
+    role: req.user.role,
+    email: req.user.email,
+    updatedAt: req.user.updatedAt,
+    createdAt: req.user.createdAt,
+    id: req.user.id
   });
 }
 

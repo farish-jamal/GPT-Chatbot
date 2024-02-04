@@ -7,7 +7,9 @@ function setUser(user){
   id: user._id,
   email: user.email,
   firstName: user.firstName,
-  role: user.role
+  role: user.role,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt
  }, secretID);
 }
 

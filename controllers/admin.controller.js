@@ -11,7 +11,8 @@ async function handleAdminGetAllHistory(req, res){
 async function handleGetSpecificUserForAdmin(req, res){
  const {userId} = req.body;
  if(userId == "null") return res.redirect("/admin");
- const results = await Response.find({createdBy: userId});
+ const results = await Response.find({createdBy: userId}).sort({ createdAt: -1 });
+//  console.log(results);
  const user = await User.findOne({_id: userId});
  return res.render("specificuser", {
    results : results,

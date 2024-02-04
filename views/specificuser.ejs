@@ -49,14 +49,14 @@
               <p id="time"><%= result.createdAt %></p>
               <button class="btn btn-danger">Delete</button>
             </div>
-          <p id="userPrompt">
+          <pre id="userPrompt">
             <b><%= name %> : </b>
             <%= result.userQuery %>
-          </p>
-          <p class="mb-5" id="botResponse">
+          </pre>
+          <pre class="mb-5" id="botResponse">
             <b>Chatbot:</b>
             <%= result.botResponse %>
-          </p>
+          </pre>
         </div>
         <% }); %>
       <% } else { %>

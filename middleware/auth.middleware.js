@@ -15,7 +15,7 @@ function restrictToLoginUser(req, res, next) {
 
 function restrictLoggedInUserToAuthenticateAgain(req, res, next){
  const userUid = req.cookies?.uid;
- if(userUid) return res.redirect("/");
+ if(userUid) return res.redirect("/api/history");
  next();
 }
 

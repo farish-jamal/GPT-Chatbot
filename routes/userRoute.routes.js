@@ -1,5 +1,5 @@
 const express = require("express");
-const {handleCreateUSer, handleGetUser} = require("../controllers/user.controller");
+const {handleCreateUSer, handleGetUser, handleProfileEdit} = require("../controllers/user.controller");
 
 const route = express.Router();
 
@@ -18,4 +18,7 @@ route.get("/login", (req, res)=>{
   alert: false
  });
 });
+
+route.post("/edit", handleProfileEdit);
+
 module.exports = route;
