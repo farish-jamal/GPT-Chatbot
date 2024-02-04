@@ -64,8 +64,25 @@ async function handleProfileEdit(req, res){
 }
 
 
+async function handleChangePassword(req, res){
+  const {editPassId, editPassword, currPassword} = req.body;
+  console.log(editPassId, currPassword, editPassword);
+  const user = await User.findOne({ _id: editPassId });
+  console.log(user);
+  const comparePassword = await bycrypt.compare(currPassword, user.password);
+  if (!comparePassword) return res.redirect("/");
+  const salt = await bycrypt.genSalt(10);
+  const securePassword = await bycrypt.hash(editPassword, salt);
+  await User.findByIdAndUpdate(editPassId, {
+    password: securePassword
+  });
+  // Use local in ejs while going for alerts:
+  return res.redirect("/api/history");
+}
+
 module.exports = {
   handleCreateUSer,
   handleGetUser,
-  handleProfileEdit
+  handleProfileEdit,
+  handleChangePassword
 };

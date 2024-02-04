@@ -39,6 +39,23 @@
     }
   </style>
   <body>
+    <div class="modal fade" id="updatePassModal" tabindex="-1" aria-labelledby="updatePassModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content px-5">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete History</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="/user/edit/password" method="post">
+            <input type="text" class="form-control my-2" name="editPassId" id="editPassId" hidden>
+            <input type="password" class="form-control my-2" name="currPassword" placeholder="Current Password">
+            <input type="password" class="form-control my-2" name="editPassword" placeholder="New Password">
+            <button type="submit" class="btn btn-success my-3">Update Password</button>
+          </form>
+          </div>
+        </div>
+      </div>
+
     <div class="modal fade" id="deleteSpecicModal" tabindex="-1" aria-labelledby="deleteSpecicModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content px-5">
@@ -102,6 +119,7 @@
           <span class="card-text mx-3"><b>Created On: </b><%= createdAt %></span>
           <p class="card-text mx-3"><b>Last Modified: </b><%= updatedAt %></p>
           <button onclick="updateModalUser('<%= firstName %>', '<%= email %>', '<%= role %>', '<%= id %>')" class="btn btn-primary mx-3 btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal">Edit Profile</button>
+          <button onclick="updatePassUser('<%= id %>')" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updatePassModal">Change Password</button>
         </div>
       </div>
     </div>
@@ -137,6 +155,9 @@
       function updateField(userId){
         let dynamicHref = `/api/clear/${userId}`;
         document.getElementById("modalsBtn").setAttribute("href", dynamicHref);
+      }
+      function updatePassUser(userId){
+        document.getElementById("editPassId").value = userId;
       }
     </script> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -40,4 +40,3 @@ module.exports = {
  handleDeleteUser,
  handleUpdateUser,
 };
-handleRenderSpecificUserForAdmin
