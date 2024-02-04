@@ -1,7 +1,12 @@
 const express = require("express");
 
-const {restrictTo} = require("../middleware/auth.middleware.js");
-const {handleAdminGetAllHistory, handleGetSpecificUserForAdmin, handleDeleteUser, handleUpdateUser} = require("../controllers/admin.controller.js");
+const { restrictTo } = require("../middleware/auth.middleware.js");
+const {
+  handleAdminGetAllHistory,
+  handleGetSpecificUserForAdmin,
+  handleDeleteUser,
+  handleUpdateUser,
+} = require("../controllers/admin.controller.js");
 
 const route = express.Router();
 

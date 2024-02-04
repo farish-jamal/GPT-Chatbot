@@ -43,6 +43,21 @@ async function handleGetHistory(req, res) {
 
 async function handleClearHistory(req, res){
   await Response.deleteMany({createdBy: req.user.id});
+  res.redirect("/api/history");
+  return res.render("userprofile", {
+    results: null,
+    firstName: req.user.firstName,
+    role: req.user.role,
+    email: req.user.email,
+    updatedAt: req.user.updatedAt,
+    createdAt: req.user.createdAt,
+    id: req.user.id
+  });
+}
+
+async function handleClearSpecificHistory(req, res){
+  await Response.findByIdAndDelete(req.params.id);
+  res.redirect("/api/history");
   return res.render("userprofile", {
     results: null,
     firstName: req.user.firstName,
@@ -58,4 +73,5 @@ module.exports = {
   handleOpenAiResponse,
   handleGetHistory,
   handleClearHistory,
+  handleClearSpecificHistory
 };

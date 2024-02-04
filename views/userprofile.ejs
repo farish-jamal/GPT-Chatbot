@@ -39,6 +39,19 @@
     }
   </style>
   <body>
+    <div class="modal fade" id="deleteSpecicModal" tabindex="-1" aria-labelledby="deleteSpecicModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content px-5">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete History</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <h4 class="text-center my-4"> Do You Want To Delete This Field?</h4>
+            <a class="btn btn-danger mt-2 mb-4" href="#" id="modalsBtn">Yes, Delete</a>
+          </div>
+        </div>
+      </div>
+  
     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content px-5">
@@ -65,7 +78,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
             <h6 class="text-center my-4"> Do You Want To Delete All History For <%= firstName %>?</h6>
-            <a class="btn btn-danger mt-2 mb-4" href="/api/clear" id="modalDeleteBtn">Yes, Delete</a>
+            <a class="btn btn-danger mt-2 mb-4" href="/api/clear" id="modalDeleteBtn" >Yes, Delete</a>
           </div>
         </div>
       </div>
@@ -98,7 +111,7 @@
           <div class="my-4 historyBox">
             <div class="d-flex align-items-center justify-content-between my-2">
               <p id="time"><%= result.createdAt %></p>
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSpecicModal" onclick="updateField('<%= result._id %>')">Delete</button>
             </div>
             <pre id="userPrompt">
               <b><%= firstName %>:</b>
@@ -120,6 +133,10 @@
         document.getElementById("editEmail").value = userEmail;
         document.getElementById("editRole").value = userRole;
         document.getElementById("editId").value = userId;
+      }
+      function updateField(userId){
+        let dynamicHref = `/api/clear/${userId}`;
+        document.getElementById("modalsBtn").setAttribute("href", dynamicHref);
       }
     </script> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

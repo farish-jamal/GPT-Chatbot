@@ -14,6 +14,7 @@ async function handleCreateUSer(req, res) {
       });
       const sessionId = setUser(user);
       res.cookie("uid", sessionId);
+      res.redirect("/");
       return res.render("home", {
         response: null,
         prompt: null,
@@ -41,6 +42,7 @@ async function handleGetUser(req, res) {
   });
   const sessionId = setUser(user);
   res.cookie("uid", sessionId);
+  res.redirect("/");
   return res.render("home", {
    response: null,
    prompt: null,
@@ -50,15 +52,12 @@ async function handleGetUser(req, res) {
 
 async function handleProfileEdit(req, res){
   const {editId, editEmail, editName} = req.body;
-  console.log(editEmail, editName, editEmail)
+  console.log(editEmail, editName);
   const user = await User.findByIdAndUpdate(editId, {
     firstName: editName,
     email: editEmail
-  });
+  },{ new: true } );
   console.log(user);
-  if (!user) {
-    return res.status(404).send("User not found");
-  }
   const sessionId = setUser(user);
   res.cookie("uid", sessionId);
   return res.redirect("/api/history");

@@ -38,5 +38,6 @@ module.exports = {
  handleAdminGetAllHistory,
  handleGetSpecificUserForAdmin,
  handleDeleteUser,
- handleUpdateUser
+ handleUpdateUser,
 };
+handleRenderSpecificUserForAdmin
