@@ -66,12 +66,9 @@ async function handleProfileEdit(req, res){
 
 async function handleChangePassword(req, res){
   const {editPassId, editPassword, currPassword} = req.body;
-  console.log(editPassId, currPassword, editPassword);
   const user = await User.findOne({ _id: editPassId });
-  console.log(user);
   const comparePassword = await bycrypt.compare(currPassword, user.password);
   if (!comparePassword){
-    res.redirect("/");
     return res.render("home", {
       firstName: user.firstName,
       response: null,
@@ -84,7 +81,6 @@ async function handleChangePassword(req, res){
   await User.findByIdAndUpdate(editPassId, {
     password: securePassword
   });
-  res.redirect("/");
   return res.render("home", {
     firstName: user.firstName,
     response: null,
