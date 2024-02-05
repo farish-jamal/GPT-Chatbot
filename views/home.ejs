@@ -26,6 +26,18 @@
     </style>
   </head>
   <body>
+    <% if (locals.msg == false) { %>
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        Current Password is not correct
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <% if (locals.msg == true) { %>
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        Password Changed
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
     <h2 class="my-5 text-center">Hi, <%= firstName %>! How can I help you today? 👾🚀</h2>
     <div class="container d-flex align-items-center justify-content-center" style="width: 700px;">
       <form action="/api/response" method="post" >

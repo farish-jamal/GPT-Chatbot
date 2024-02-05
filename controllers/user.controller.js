@@ -70,14 +70,27 @@ async function handleChangePassword(req, res){
   const user = await User.findOne({ _id: editPassId });
   console.log(user);
   const comparePassword = await bycrypt.compare(currPassword, user.password);
-  if (!comparePassword) return res.redirect("/");
+  if (!comparePassword){
+    res.redirect("/");
+    return res.render("home", {
+      firstName: user.firstName,
+      response: null,
+      prompt: null,
+      msg: false
+    });
+  }
   const salt = await bycrypt.genSalt(10);
   const securePassword = await bycrypt.hash(editPassword, salt);
   await User.findByIdAndUpdate(editPassId, {
     password: securePassword
   });
-  // Use local in ejs while going for alerts:
-  return res.redirect("/api/history");
+  res.redirect("/");
+  return res.render("home", {
+    firstName: user.firstName,
+    response: null,
+    prompt: null,
+    msg: true
+  });
 }
 
 module.exports = {

@@ -29,7 +29,7 @@ async function handleOpenAiResponse(req, res) {
 }
 
 async function handleGetHistory(req, res) {
-  const results = await Response.find({createdBy: req.user.id}).sort({ createdAt: -1 });;
+  const results = await Response.find({createdBy: req.user.id}).sort({ createdAt: -1 });
   return res.render("userprofile", {
     results: results,
     firstName: req.user.firstName,
@@ -43,30 +43,14 @@ async function handleGetHistory(req, res) {
 
 async function handleClearHistory(req, res){
   await Response.deleteMany({createdBy: req.user.id});
-  res.redirect("/api/history");
-  return res.render("userprofile", {
-    results: null,
-    firstName: req.user.firstName,
-    role: req.user.role,
-    email: req.user.email,
-    updatedAt: req.user.updatedAt,
-    createdAt: req.user.createdAt,
-    id: req.user.id
-  });
+  handleGetHistory(req, res);
+  return res.redirect("/api/history");
 }
 
 async function handleClearSpecificHistory(req, res){
   await Response.findByIdAndDelete(req.params.id);
-  res.redirect("/api/history");
-  return res.render("userprofile", {
-    results: null,
-    firstName: req.user.firstName,
-    role: req.user.role,
-    email: req.user.email,
-    updatedAt: req.user.updatedAt,
-    createdAt: req.user.createdAt,
-    id: req.user.id
-  });
+  handleGetHistory(req, res);
+  return res.redirect("/api/history");
 }
 
 module.exports = {
