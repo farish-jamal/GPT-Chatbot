@@ -1,14 +1,3 @@
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [Development](#development)
-- [Built With](#built-with)
-
 ## Introduction
 
 The Chatbot is an intelligent conversational agent designed to engage in natural language conversations with users. Powered by the OpenAI GPT.
