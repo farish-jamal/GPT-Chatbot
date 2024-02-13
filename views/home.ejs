@@ -11,36 +11,60 @@
       crossorigin="anonymous"
     />
     <style>
-      #userPrompt{
+      #userPrompt {
         background-color: rgb(82, 82, 253);
         padding: 10px;
         color: white;
         border-radius: 10px;
       }
-      #botResponse{
+      #botResponse {
         background-color: #8d8d8d;
         padding: 10px;
         color: white;
         border-radius: 10px;
       }
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     </style>
   </head>
   <body>
     <% if (locals.msg == false) { %>
-      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-        Current Password is not correct
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+    <div
+      class="alert alert-warning alert-dismissible fade show text-center"
+      role="alert"
+    >
+      Current Password is not correct
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <% } %> <% if (locals.msg == true) { %>
+    <div
+      class="alert alert-warning alert-dismissible fade show text-center"
+      role="alert"
+    >
+      Password Changed
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <% } %>
-    <% if (locals.msg == true) { %>
-      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-        Password Changed
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% } %>
-    <h2 class="my-5 text-center">Hi, <%= firstName %>! How can I help you today? 👾🚀</h2>
-    <div class="container d-flex align-items-center justify-content-center" style="width: 700px;">
-      <form action="/api/response" method="post" >
+    <h2 class="my-5 text-center">
+      Hi, <%= firstName %>! How can I help you today? 👾🚀
+    </h2>
+    <div
+      class="container d-flex align-items-center justify-content-center"
+      style="width: 700px"
+    >
+      <form action="/api/response" method="post">
         <div class="mb-3">
           <textarea
             class="form-control p-3"
@@ -48,19 +72,21 @@
             rows="5"
             name="prompt"
             placeholder="Ask Your Question"
-            style="background-color: #ececec;"
+            style="background-color: #ececec"
           ></textarea>
         </div>
-        <button class="btn btn-primary" style="width: 100%;">Generate Response 🛠⚙️</button>
-      <a class="btn btn-primary text-center mt-4" href="/api/history"
-      >Go to your profile 🪄</a
-    >
-    <a class="btn btn-primary text-center mt-4 ms-2" href="/logout"
-      >Logout 🚨</a
-    >
+        <button class="btn btn-primary" style="width: 100%">
+          Generate Response 🛠⚙️
+        </button>
+        <a class="btn btn-primary text-center mt-4" href="/api/history"
+          >Go to your profile 🪄</a
+        >
+        <a class="btn btn-primary text-center mt-4 ms-2" href="/logout"
+          >Logout 🚨</a
+        >
       </form>
     </div>
-    <div class="container my-5 d-flex flex-column" style="width: 670px;">
+    <div class="container my-5 d-flex flex-column" style="width: 670px">
       <% if (response && prompt) { %>
       <h3 class="text-center">Chat Bot Response 💡</h3>
       <pre id="userPrompt"><b><%= firstName %>:</b> <%= prompt %></pre>
