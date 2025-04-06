@@ -1,17 +1,23 @@
 require("dotenv").config();
 const Response = require("../models/response.model");
-const OpenAI = require("openai");
-const openai = new OpenAI({
-  apiKey: process.env.OPEN_AI_KEY,
-});
+const { GoogleGenAI } = require("@google/genai");
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 
 async function main(prompt) {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: prompt }],
-    model: "gpt-3.5-turbo",
-  });
-  return completion.choices[0].message.content;
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-flash",
+      contents: prompt,
+    });
+    const text = response.candidates[0].content.parts[0].text;
+    console.log(text, "Gemini Response");
+    return text;
+  } catch (error) {
+    console.error("Gemini Error:", error);
+    return "An error occurred.";
+  }
 }
+
 
 async function handleOpenAiResponse(req, res) {
   const { prompt } = req.body;

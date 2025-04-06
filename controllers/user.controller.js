@@ -6,6 +6,7 @@ async function handleCreateUSer(req, res) {
   const salt = await bycrypt.genSalt(10);
   const securePassword = await bycrypt.hash(req.body.password, salt);
   const body = req.body;
+  console.log(body, "created user");
     try {
       const user = await User.create({
         firstName: body.firstName,
@@ -21,6 +22,7 @@ async function handleCreateUSer(req, res) {
         firstName: user.firstName
       });
     } catch (error) {
+      console.log(error, "created user");
       return res.render("register", {
         alert: true,
         message: "Email already exists! Please use another email to register.",
